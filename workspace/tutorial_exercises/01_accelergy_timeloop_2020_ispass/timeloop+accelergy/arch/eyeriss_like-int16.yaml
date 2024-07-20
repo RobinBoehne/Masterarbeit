@@ -67,5 +67,5 @@ architecture:
               - name: mac
                 class: intmac
                 attributes:
-                  width: 16
+                  datawidth: 16
                   meshX : 14

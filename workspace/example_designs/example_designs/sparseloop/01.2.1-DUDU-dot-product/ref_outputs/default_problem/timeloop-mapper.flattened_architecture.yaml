@@ -20,17 +20,17 @@ architecture:
             meshX: 1
             meshY: 1
             technology: "45nm"
-            power_gated_at: null
+            power_gated_at: "Buffer"
             version: '0.4'
             global_cycle_seconds: 1e-09
             action_latency_cycles: 1
             cycle_seconds: 1e-09
             n_instances: 1
         required_actions:
-          - update
-          - write
           - leak
           - read
+          - update
+          - write
         enabled: true
       - name: PE_top_level.mac[1..1]
         class: intmac
@@ -41,7 +41,7 @@ architecture:
             meshX: 1
             meshY: 1
             technology: "45nm"
-            power_gated_at: null
+            power_gated_at: "mac"
             version: '0.4'
             global_cycle_seconds: 1e-09
             action_latency_cycles: 1

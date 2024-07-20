@@ -1,0 +1,134 @@
+ERT_summary:
+    version: '0.4'
+    table_summary:
+      - name: System_top_level.DRAM[1..1]
+        actions:
+          - name: write
+            energy: 512.0
+          - name: read
+            energy: 512.0
+          - name: update
+            energy: 512.0
+          - name: leak
+            energy: 0.0
+        primitive_estimation(s):
+          - name: System_top_level.DRAM[1..1]
+            estimator: CactiDRAM
+      - name: System_top_level.GlobalBuffer[1..1]
+        actions:
+          - name: write
+            energy: 36.482167
+          - name: read
+            energy: 29.580067
+          - name: leak
+            energy: 0.002808
+          - name: update
+            energy: 36.482167
+        primitive_estimation(s):
+          - name: storage
+            estimator: CactiSRAM
+          - name: address_generators[0]
+            estimator: Neurosim Plug-In
+          - name: address_generators[1]
+            estimator: Neurosim Plug-In
+          - name: address_generators[0..1]
+            estimator: Neurosim Plug-In
+      - name: System_top_level.PEInputBuffer[1..16]
+        actions:
+          - name: write
+            energy: 10.798308
+          - name: read
+            energy: 12.899908
+          - name: leak
+            energy: 0.002896
+          - name: update
+            energy: 10.798308
+        primitive_estimation(s):
+          - name: storage
+            estimator: CactiSRAM
+          - name: address_generators[0]
+            estimator: Neurosim Plug-In
+          - name: address_generators[1]
+            estimator: Neurosim Plug-In
+          - name: address_generators[0..1]
+            estimator: Neurosim Plug-In
+      - name: System_top_level.PEWeightBuffer[1..64]
+        actions:
+          - name: write
+            energy: 79.612772
+          - name: read
+            energy: 79.992552
+          - name: leak
+            energy: 0.067792
+          - name: update
+            energy: 79.612772
+        primitive_estimation(s):
+          - name: storage.storage[1..64]
+            estimator: Library
+          - name: storage.comparator[1..4096]
+            estimator: Library
+          - name: address_generators[0]
+            estimator: Neurosim Plug-In
+          - name: address_generators[1]
+            estimator: Neurosim Plug-In
+          - name: storage.storage[1..262144]
+            estimator: Library
+          - name: address_generators[0..1]
+            estimator: Neurosim Plug-In
+      - name: System_top_level.PEAccuBuffer[1..64]
+        actions:
+          - name: write
+            energy: 1.879636
+          - name: read
+            energy: 2.022053
+          - name: leak
+            energy: 0.001592
+          - name: update
+            energy: 1.879636
+        primitive_estimation(s):
+          - name: storage.storage[1..32]
+            estimator: Library
+          - name: storage.comparator[1..128]
+            estimator: Library
+          - name: address_generators[0]
+            estimator: Neurosim Plug-In
+          - name: address_generators[1]
+            estimator: Neurosim Plug-In
+          - name: storage.storage[1..4096]
+            estimator: Library
+          - name: address_generators[0..1]
+            estimator: Neurosim Plug-In
+      - name: System_top_level.PEWeightRegs[1..256]
+        actions:
+          - name: write
+            energy: 0.05067
+          - name: read
+            energy: 0.169193
+          - name: leak
+            energy: 1.7e-05
+          - name: update
+            energy: 0.05067
+        primitive_estimation(s):
+          - name: storage.storage[1..512]
+            estimator: Library
+          - name: storage.comparator[1..64]
+            estimator: Library
+          - name: address_generators[0]
+            estimator: Neurosim Plug-In
+          - name: address_generators[1]
+            estimator: Neurosim Plug-In
+          - name: storage.storage[1..32768]
+            estimator: Library
+          - name: address_generators[0..1]
+            estimator: Neurosim Plug-In
+      - name: System_top_level.mac[1..256]
+        actions:
+          - name: compute
+            energy: 0.207692
+          - name: leak
+            energy: 0.002374
+        primitive_estimation(s):
+          - name: intadder
+            estimator: Library
+          - name: intmultiplier
+            estimator: Library

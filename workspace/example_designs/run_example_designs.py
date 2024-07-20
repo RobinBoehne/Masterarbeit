@@ -57,7 +57,12 @@ def run_mapper(
     # Used for some Sparseloop tutorials to test with/without sparse optimizations
     if remove_sparse_opts:
         remove_sparse_optimizations(spec)
-    tl.call_mapper(spec, output_dir=output_dir, dump_intermediate_to=output_dir)
+
+    tl.call_mapper(
+        spec,
+        output_dir=output_dir,
+        dump_intermediate_to=output_dir,
+    )
     assert os.path.exists(f"{output_dir}/timeloop-mapper.stats.txt"), (
         f"Mapper did not generate expected output for {arch_target}. "
         f"Please check the logs for more details."
@@ -92,11 +97,7 @@ if __name__ == "__main__":
     if args.problem:
         problem = os.path.join(THIS_SCRIPT_DIR, "layer_shapes", args.problem)
         if os.path.isdir(problem):
-            problems = [
-                os.path.join(problem, f)
-                for f in os.listdir(problem)
-                if f.endswith(".yaml")
-            ]
+            problems = [os.path.join(problem, f) for f in os.listdir(problem) if f.endswith(".yaml")]
         else:
             problems = [problem]
 
@@ -106,5 +107,5 @@ if __name__ == "__main__":
             a, p, args.generate_ref_outputs, args.remove_sparse_opts
         )
         for a in arch
-        for p in sorted(problems)
+        for p in problems
     )

@@ -1,0 +1,139 @@
+2024-05-14 19:53:58 INFO            _                _                      
+2024-05-14 19:53:58 INFO           / \   ___ ___ ___| | ___ _ __ __ _ _   _ 
+2024-05-14 19:53:58 INFO          / _ \ / __/ __/ _ \ |/ _ \ '__/ _` | | | |
+2024-05-14 19:53:58 INFO         / ___ \ (_| (_|  __/ |  __/ | | (_| | |_| |
+2024-05-14 19:53:58 INFO        /_/   \_\___\___\___|_|\___|_|  \__, |\__, |
+2024-05-14 19:53:58 INFO                                        |___/ |___/ 
+2024-05-14 19:53:58 INFO        generating outputs according to the following specified output flags... 
+2024-05-14 19:53:58 INFO         Please use the -f flag to update the preference (default to all output files)
+2024-05-14 19:53:58 INFO        {'ERT': 1, 'ERT_summary': 1, 'ART': 1, 'ART_summary': 1, 'energy_estimation': 1, 'flattened_arch': 1}
+2024-05-14 19:53:58 INFO        Located config file at /home/workspace/.config/accelergy/accelergy_config.yaml.
+2024-05-14 19:53:58 INFO        config file located:
+2024-05-14 19:53:58 INFO        /home/workspace/.config/accelergy/accelergy_config.yaml
+2024-05-14 19:53:58 INFO        YAML Setting environment variable TIMELOOP_HIDE_INCONSEQUENTIAL_STATS to 1
+2024-05-14 19:53:58 INFO        Parsing file /home/workspace/example_designs/example_designs/test/outputs/00/parsed-processed-input.yaml for architecture info
+2024-05-14 19:53:58 INFO        Parsing file /home/workspace/example_designs/example_designs/test/outputs/00/parsed-processed-input.yaml for compound_components info
+2024-05-14 19:53:58 INFO        YAML Setting environment variable TIMELOOP_HIDE_INCONSEQUENTIAL_STATS to 1
+2024-05-14 19:53:58 INFO        Adding required action "leak" to class DRAM
+2024-05-14 19:53:58 INFO        Adding required action "update" to class DRAM
+2024-05-14 19:53:58 INFO        Adding required action "write" to class DRAM
+2024-05-14 19:53:58 INFO        Adding required action "read" to class DRAM
+2024-05-14 19:53:58 INFO        Adding required action "leak" to class SRAM
+2024-05-14 19:53:58 INFO        Adding required action "update" to class SRAM
+2024-05-14 19:53:58 INFO        Adding required action "write" to class SRAM
+2024-05-14 19:53:58 INFO        Adding required action "read" to class SRAM
+
+
+
+
+
+============================================================
+Accelergy has encountered an error and crashed. Error below: 
+============================================================
+|| Traceback (most recent call last):
+||   File "/usr/local/lib/python3.8/dist-packages/accelergy/accelergy_console.py", line 237, in main
+||     run()
+||   File "/usr/local/lib/python3.8/dist-packages/accelergy/accelergy_console.py", line 130, in run
+||     arch_obj = arch_dict_2_obj(
+||   File "/usr/local/lib/python3.8/dist-packages/accelergy/arch_dict_2_obj.py", line 6, in arch_dict_2_obj
+||     fully_defined_arch_dict = fully_define_arch_dict(arch_dict, cc_classes, pc_classes)
+||   File "/usr/local/lib/python3.8/dist-packages/accelergy/arch_dict_2_obj.py", line 45, in fully_define_arch_dict
+||     attrs_to_be_applied = class_obj.get_default_attr_to_apply(cinfo["attributes"])
+||   File "/usr/local/lib/python3.8/dist-packages/accelergy/component_class.py", line 59, in get_default_attr_to_apply
+||     raise AttributeError(
+|| AttributeError: Attribute multiplier_width for compound class intmac must be specified. Available attributes are: ['datawidth', 'has_power_gating', 'meshX', 'meshY', 'technology', 'global_cycle_seconds', 'power_gated_at', 'version', 'action_latency_cycles', 'cycle_seconds', 'n_instances']
+============================================================
+Stack with local variables (most recent call last):
+============================================================
+Frame 3
+============================================================
+| /usr/local/lib/python3.8/dist-packages/accelergy/accelergy_console.py:130
+| AttributeError: Attribute multiplier_width for compound class intmac must be specified. Available attributes are: ['datawidth', 'has_power_gating', 'meshX', 'meshY', 'technology', 'global_cycle_seconds', 'power_gated_at', 'version', 'action_latency_cycles', 'cycle_seconds', 'n_instances']
+| Local var system_state =                 <accelergy.system_state.SystemState object at 0x7f63dfb9e4f0>
+| Local var raw_dicts =                    <accelergy.raw_inputs_2_dicts.RawInputs2Dicts object at 0x7f63deb9d550>
+| Local var cc_name =                      smartbuffer_metadata
+| Local var cc_info =                      {'name': 'smartbuffer_metadata', 'attributes': {'technology': 'must_specify', 'width': 'must_specify', 'depth': 'must_specify', 'metadata_storage_width': 'must_specify', 'metadata_storage_depth': 'must_specify', 'n_rdwr_ports': 1, 'metadata_counter_width': 0}, 'subcomponents': [{'name': 'storage', 'class': 'smartbuffer_SRAM', 'attributes': {'technology': 'technology', 'width': 'width', 'depth': 'depth', 'n_rdwr_ports': 'n_rdwr_ports'}, 'area_scale': 1.0}, {'name': 'metadata_storage', 'class': 'smartbuffer_SRAM', 'attributes': {'technology': 'technology', 'width': 'metadata_storage_width', 'depth': 'metadata_storage_depth', 'n_rdwr_ports': 'n_rdwr_ports'}, 'area_scale': 1.0}, {'name': 'metadata_counters[0..1]', 'class': 'intadder', 'attributes': {'technology': 'technology', 'datawidth': 'metadata_counter_width'}, 'area_scale': 1.0}], 'actions': [{'name': 'read', 'subcomponents': [{'name': 'storage', 'actions': [{'name': 'read', 'energy_scale': 1}]}]}, {'name': 'write', 'subcomponents': [{'name': 'storage', 'actions': [{'name': 'write', 'energy_scale': 1}]}]}, {'name': 'update', 'subcomponents': [{'name': 'storage', 'actions': [{'name': 'write', 'energy_scale': 1}]}]}, {'name': 'metadata_read', 'subcomponents': [{'name': 'metadata_storage', 'actions': [{'name': 'read', 'energy_scale': 1}]}]}, {'name': 'metadata_write', 'subcomponents': [{'name': 'metadata_storage', 'actions': [{'name': 'write', 'energy_scale': 1}]}]}, {'name': 'metadata_update', 'subcomponents': [{'name': 'metadata_storage', 'actions': [{'name': 'write', 'energy_scale': 1}]}]}, {'name': 'leak', 'subcomponents': [{'name': 'storage', 'actions': [{'name': 'leak', 'arguments': {'global_cycle_seconds': 'global_cycle_seconds'}, 'energy_scale': 1}]}, {'name': 'metadata_storage', 'actions': [{'name': 'leak', 'arguments': {'global_cycle_seconds': 'global_cycle_seconds'}, 'energy_scale': 1}]}]}, {'name': 'decompression_count', 'subcomponents': [{'name': 'metadata_counters[1]', 'actions': [{'name': 'add', 'energy_scale': 1}]}]}, {'name': 'compression_count', 'subcomponents': [{'name': 'metadata_counters[0]', 'actions': [{'name': 'add', 'energy_scale': 1}]}]}]}
+|          126:        for cc_name, cc_info in raw_dicts.get_cc_classses().items():
+|          127:            system_state.add_cc_class(ComponentClass(cc_info))
+|          128: 
+|          129:        # ----- Set Architecture Spec (all attributes defined)
+| ERROR >> 130:        arch_obj = arch_dict_2_obj(
+|          131:            raw_dicts.get_flatten_arch_spec_dict(),
+|          132:            system_state.cc_classes,
+|          133:            system_state.pc_classes,
+|          134:        )
+============================================================
+Frame 2
+============================================================
+| /usr/local/lib/python3.8/dist-packages/accelergy/arch_dict_2_obj.py:6
+| AttributeError: Attribute multiplier_width for compound class intmac must be specified. Available attributes are: ['datawidth', 'has_power_gating', 'meshX', 'meshY', 'technology', 'global_cycle_seconds', 'power_gated_at', 'version', 'action_latency_cycles', 'cycle_seconds', 'n_instances']
+| Local var arch_dict =                    {'version': '0.4', 'components': {'System_top_level.MainMemory[1..1]': {'name': 'System_top_level.MainMemory[1..1]', 'class': 'DRAM', 'attributes': {'width': 256, 'datawidth': 8, 'has_power_gating': False, 'n_banks': 2, 'cluster_size': 1, 'reduction_supported': True, 'multiple_buffering': 1, 'min_utilization': 0, 'allow_overbooking': False, 'meshX': 1, 'meshY': 1, 'technology': '40nm', 'global_cycle_seconds': 1e-09, 'power_gated_at': None, 'version': '0.4', 'action_latency_cycles': 1, 'cycle_seconds': 1e-09, 'n_instances': 1}, 'required_actions': ['leak', 'update', 'write', 'read'], 'enabled': True}, 'System_top_level.GlobalBuffer[1..1]': {'name': 'System_top_level.GlobalBuffer[1..1]', 'class': 'SRAM', 'attributes': {'depth': 32768, 'width': 64, 'datawidth': 8, 'has_power_gating': False, 'n_banks': 2, 'cluster_size': 1, 'reduction_supported': True, 'multiple_buffering': 1, 'min_utilization': 0, 'allow_overbooking': False, 'meshX': 1, 'meshY': 1, 'technology': '40nm', 'global_cycle_seconds': 1e-09, 'power_gated_at': None, 'version': '0.4', 'action_latency_cycles': 1, 'cycle_seconds': 1e-09, 'n_instances': 1}, 'required_actions': ['leak', 'update', 'write', 'read'], 'enabled': True}, 'System_top_level.inter_PE_spatial[1..1]': {'name': 'System_top_level.inter_PE_spatial[1..1]', 'class': 'dummy_storage', 'attributes': {'width': 1, 'depth': 1, 'datawidth': 1, 'technology': -1, 'has_power_gating': False, 'n_banks': 2, 'cluster_size': 1, 'reduction_supported': True, 'multiple_buffering': 1, 'min_utilization': 0, 'allow_overbooking': False, 'meshX': 1, 'meshY': 1, 'global_cycle_seconds': 1e-09, 'power_gated_at': None, 'version': '0.4', 'action_latency_cycles': 1, 'cycle_seconds': 1e-09, 'n_instances': 1}, 'enabled': True}, 'System_top_level.RegisterFile[1..256]': {'name': 'System_top_level.RegisterFile[1..256]', 'class': 'regfile', 'attributes': {'depth': 64, 'width': 8, 'datawidth': 8, 'has_power_gating': False, 'n_banks': 2, 'cluster_size': 1, 'reduction_supported': True, 'multiple_buffering': 1, 'min_utilization': 0, 'allow_overbooking': False, 'meshX': 16, 'meshY': 16, 'technology': '40nm', 'global_cycle_seconds': 1e-09, 'power_gated_at': None, 'version': '0.4', 'action_latency_cycles': 1, 'cycle_seconds': 1e-09, 'n_instances': 1}, 'required_actions': ['leak', 'update', 'write', 'read'], 'enabled': True}, 'System_top_level.MACC[1..256]': {'name': 'System_top_level.MACC[1..256]', 'class': 'intmac', 'attributes': {'datawidth': 8, 'has_power_gating': False, 'meshX': 16, 'meshY': 16, 'technology': '40nm', 'global_cycle_seconds': 1e-09, 'power_gated_at': None, 'version': '0.4', 'action_latency_cycles': 1, 'cycle_seconds': 1e-09, 'n_instances': 1}, 'required_actions': ['compute'], 'enabled': True}}}
+| Local var cc_classes =                   {'intmac': <accelergy.component_class.ComponentClass object at 0x7f63dea5df40>, 'regfile_metadata': <accelergy.component_class.ComponentClass object at 0x7f63dea5df70>, 'smartbuffer_RF': <accelergy.component_class.ComponentClass object at 0x7f63dea5d610>, 'regfile': <accelergy.component_class.ComponentClass object at 0x7f63dea5d970>, 'smartbuffer_SRAM': <accelergy.component_class.ComponentClass object at 0x7f63deaebeb0>, 'smartbuffer_metadata': <accelergy.component_class.ComponentClass object at 0x7f63deb4afd0>}
+| Local var pc_classes =                   {'DRAM': <accelergy.component_class.ComponentClass object at 0x7f63de9fce80>, 'SRAM': <accelergy.component_class.ComponentClass object at 0x7f63de9fcfd0>, 'dummy_storage': <accelergy.component_class.ComponentClass object at 0x7f63deb751c0>}
+|          2: from accelergy.component_class import ComponentClass
+|          3: 
+|          4: 
+|          5: def arch_dict_2_obj(arch_dict, cc_classes, pc_classes):
+| ERROR >> 6:     fully_defined_arch_dict = fully_define_arch_dict(arch_dict, cc_classes, pc_classes)
+|          7:     return Architecture(fully_defined_arch_dict)
+|          8: 
+|          9: 
+|          10: def fully_define_arch_dict(arch_dict, cc_classes, pc_classes):
+============================================================
+Frame 1
+============================================================
+| /usr/local/lib/python3.8/dist-packages/accelergy/arch_dict_2_obj.py:45
+| AttributeError: Attribute multiplier_width for compound class intmac must be specified. Available attributes are: ['datawidth', 'has_power_gating', 'meshX', 'meshY', 'technology', 'global_cycle_seconds', 'power_gated_at', 'version', 'action_latency_cycles', 'cycle_seconds', 'n_instances']
+| Local var cinfo =                        {'name': 'System_top_level.MACC[1..256]', 'class': 'intmac', 'attributes': {'datawidth': 8, 'has_power_gating': False, 'meshX': 16, 'meshY': 16, 'technology': '40nm', 'global_cycle_seconds': 1e-09, 'power_gated_at': None, 'version': '0.4', 'action_latency_cycles': 1, 'cycle_seconds': 1e-09, 'n_instances': 1}, 'required_actions': ['compute'], 'enabled': True}
+| Local var class_obj =                    <accelergy.component_class.ComponentClass object at 0x7f63dea5df40>
+| Local var a =                            compute
+| Local var subcomp_action =               {'name': 'SRAM', 'actions': [{'name': 'read', 'arguments': {}}]}
+| Local var action =                       {'name': 'read', 'subcomponents': [{'name': 'SRAM', 'actions': [{'name': 'read', 'arguments': {}}]}]}
+| Local var attrs_to_be_applied =          OrderedDict([('technology', '40nm'), ('width', 8), ('depth', 64)])
+| Local var attr_name =                    depth
+| Local var attr_val =                     64
+|          41:                }
+|          42:                action = {"name": a, "subcomponents": [subcomp_action]}
+|          43:                class_obj.add_action(action)
+|          44: 
+| ERROR >> 45:        attrs_to_be_applied = class_obj.get_default_attr_to_apply(cinfo["attributes"])
+|          46:        for attr_name, attr_val in attrs_to_be_applied.items():
+|          47:            cinfo["attributes"][attr_name] = attr_val
+|          48:        cinfo["attributes"] = parse_expressions_sequentially_replacing_bindings(
+|          49:            cinfo["attributes"],
+============================================================
+Frame 0
+============================================================
+| /usr/local/lib/python3.8/dist-packages/accelergy/component_class.py:59
+| AttributeError: Attribute multiplier_width for compound class intmac must be specified. Available attributes are: ['datawidth', 'has_power_gating', 'meshX', 'meshY', 'technology', 'global_cycle_seconds', 'power_gated_at', 'version', 'action_latency_cycles', 'cycle_seconds', 'n_instances']
+| Local var self =                         <accelergy.component_class.ComponentClass object at 0x7f63dea5df40>
+| Local var obj_attr_name_list =           {'datawidth': 8, 'has_power_gating': False, 'meshX': 16, 'meshY': 16, 'technology': '40nm', 'global_cycle_seconds': 1e-09, 'power_gated_at': None, 'version': '0.4', 'action_latency_cycles': 1, 'cycle_seconds': 1e-09, 'n_instances': 1}
+| Local var attr_name =                    multiplier_width
+| Local var attr_val =                     must_specify
+| Local var found_val =                    None
+|          55: for attr_name, attr_val in self._get_default_attrs().items():
+|          56:     # print(f'Checking for {attr_name=} {attr_val=} in {obj_attr_name_list}')
+|          57:     found_val = obj_attr_name_list.get(attr_name, None)
+|          58:     if attr_val == "must_specify" and found_val is None:
+| ERROR >> 59:         raise AttributeError(
+|          60:             f"Attribute {attr_name} for compound class "
+|          61:             f"{self.get_name()} must be specified. Available "
+|          62:             f"attributes are: {list(obj_attr_name_list.keys())}"
+|          63:         )
+============================================================
+|| Traceback (most recent call last):
+||   File "/usr/local/lib/python3.8/dist-packages/accelergy/accelergy_console.py", line 237, in main
+||     run()
+||   File "/usr/local/lib/python3.8/dist-packages/accelergy/accelergy_console.py", line 130, in run
+||     arch_obj = arch_dict_2_obj(
+||   File "/usr/local/lib/python3.8/dist-packages/accelergy/arch_dict_2_obj.py", line 6, in arch_dict_2_obj
+||     fully_defined_arch_dict = fully_define_arch_dict(arch_dict, cc_classes, pc_classes)
+||   File "/usr/local/lib/python3.8/dist-packages/accelergy/arch_dict_2_obj.py", line 45, in fully_define_arch_dict
+||     attrs_to_be_applied = class_obj.get_default_attr_to_apply(cinfo["attributes"])
+||   File "/usr/local/lib/python3.8/dist-packages/accelergy/component_class.py", line 59, in get_default_attr_to_apply
+||     raise AttributeError(
+|| AttributeError: Attribute multiplier_width for compound class intmac must be specified. Available attributes are: ['datawidth', 'has_power_gating', 'meshX', 'meshY', 'technology', 'global_cycle_seconds', 'power_gated_at', 'version', 'action_latency_cycles', 'cycle_seconds', 'n_instances']
+============================================================
+Accelergy has encountered an error and crashed. Error above. 
+============================================================
+

@@ -70,7 +70,7 @@ architecture:
 
     - !Component # Weight scratchpad
       name: weights_spad
-      class: smartbuffer_RF
+      class: smartbuffer_SRA
       attributes:
         depth: 192
         width: 16

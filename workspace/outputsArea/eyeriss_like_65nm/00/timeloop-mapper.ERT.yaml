@@ -1,0 +1,89 @@
+ERT:
+    version: '0.4'
+    tables:
+      - name: system_top_level.DRAM[1..1]
+        actions:
+          - name: write
+            arguments:
+                global_cycle_seconds: 1e-09
+                action_latency_cycles: 1
+            energy: 512.0
+          - name: update
+            arguments:
+                global_cycle_seconds: 1e-09
+                action_latency_cycles: 1
+            energy: 512.0
+          - name: leak
+            arguments:
+                global_cycle_seconds: 1e-09
+                action_latency_cycles: 1
+            energy: 0.0
+          - name: read
+            arguments:
+                global_cycle_seconds: 1e-09
+                action_latency_cycles: 1
+            energy: 512.0
+      - name: system_top_level.shared_glb[1..1]
+        actions:
+          - name: write
+            arguments: {}
+            energy: 49.714729
+          - name: read
+            arguments: {}
+            energy: 59.455529
+          - name: leak
+            arguments: {}
+            energy: 0.021622
+          - name: update
+            arguments: {}
+            energy: 49.714729
+      - name: system_top_level.ifmap_spad[1..168]
+        actions:
+          - name: write
+            arguments: {}
+            energy: 0.351676
+          - name: read
+            arguments: {}
+            energy: 0.400088
+          - name: leak
+            arguments: {}
+            energy: 0.000192
+          - name: update
+            arguments: {}
+            energy: 0.351676
+      - name: system_top_level.weights_spad[1..168]
+        actions:
+          - name: write
+            arguments: {}
+            energy: 3.578636
+          - name: read
+            arguments: {}
+            energy: 3.757291
+          - name: leak
+            arguments: {}
+            energy: 0.002999
+          - name: update
+            arguments: {}
+            energy: 3.578636
+      - name: system_top_level.psum_spad[1..168]
+        actions:
+          - name: write
+            arguments: {}
+            energy: 0.431433
+          - name: read
+            arguments: {}
+            energy: 0.492024
+          - name: leak
+            arguments: {}
+            energy: 0.000254
+          - name: update
+            arguments: {}
+            energy: 0.431433
+      - name: system_top_level.mac[1..168]
+        actions:
+          - name: compute
+            arguments: {}
+            energy: 0.390807
+          - name: leak
+            arguments: {}
+            energy: 0.004466

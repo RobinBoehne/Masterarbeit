@@ -8,7 +8,6 @@ architecture:
             technology: "40nm"
             global_cycle_seconds: 1e-9
             has_power_gating: false
-            power_gated_at: null
         local:
           - name: MainMemory[1..1]
             class: DRAM
@@ -26,12 +25,12 @@ architecture:
                 meshY: 1
                 technology: "40nm"
                 global_cycle_seconds: 1e-9
-                power_gated_at: null
+                power_gated_at: "MainMemory"
             required_actions:
+              - leak
               - update
               - read
               - write
-              - leak
             enabled: true
           - name: inter_PE_spatial[1..1]
             class: dummy_storage
@@ -50,7 +49,7 @@ architecture:
                 meshX: 1
                 meshY: 1
                 global_cycle_seconds: 1e-9
-                power_gated_at: null
+                power_gated_at: "inter_PE_spatial"
             enabled: true
           - name: GlobalBuffer[1..16]
             class: SRAM
@@ -69,12 +68,12 @@ architecture:
                 meshY: 1
                 technology: "40nm"
                 global_cycle_seconds: 1e-9
-                power_gated_at: null
+                power_gated_at: "GlobalBuffer"
             required_actions:
+              - leak
               - update
               - read
               - write
-              - leak
             enabled: true
           - name: RegisterFile[1..16]
             class: regfile
@@ -93,23 +92,23 @@ architecture:
                 meshY: 1
                 technology: "40nm"
                 global_cycle_seconds: 1e-9
-                power_gated_at: null
+                power_gated_at: "RegisterFile"
             required_actions:
+              - leak
               - update
               - read
               - write
-              - leak
             enabled: true
           - name: MACC[1..16]
             class: intmac
             attributes:
-                width: 8
+                datawidth: 8
                 has_power_gating: false
                 meshX: 16
                 meshY: 1
                 technology: "40nm"
                 global_cycle_seconds: 1e-9
-                power_gated_at: null
+                power_gated_at: "MACC"
             required_actions:
               - compute
             enabled: true
@@ -169,7 +168,7 @@ mapping:
       - Weights
       - Inputs
       - Outputs
-    type: bypass
+    type: dataspace
     target: inter_PE_spatial
   - target: GlobalBuffer
     type: temporal
@@ -203,9 +202,8 @@ mapper:
     max_permutations_per_if_visit: 16
 mapspace:
     version: '0.4'
-    template: uber
+    template: ruby
 globals:
     version: '0.4'
     environment_variables: {}
     expression_custom_functions: []
-    accelergy_plug_ins: []

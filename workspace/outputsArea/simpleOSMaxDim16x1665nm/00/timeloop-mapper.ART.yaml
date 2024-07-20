@@ -1,0 +1,21 @@
+ART:
+    version: '0.4'
+    tables:
+      - name: system_top_level.DRAM[1..1]
+        area: 0.0
+      - name: system_top_level.inter_PE_column_spatial[1..1]
+        area: 1.0
+      - name: system_top_level.inter_PE_spatial[1..16]
+        area: 1.0
+      - name: system_top_level.weight_reg[1..256]
+        area: 143.52
+      - name: system_top_level.input_activation_reg[1..256]
+        area: 143.52
+      - name: system_top_level.output_activation_reg[1..256]
+        area: 143.52
+      - name: system_top_level.shared_glb[1..1]
+        area: 896779.8522
+      - name: system_top_level.pe_spad[1..256]
+        area: 1485.01314
+      - name: system_top_level.mac[1..256]
+        area: 625.5

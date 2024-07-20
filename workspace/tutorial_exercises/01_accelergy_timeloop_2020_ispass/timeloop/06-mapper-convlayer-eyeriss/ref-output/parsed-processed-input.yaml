@@ -8,7 +8,6 @@ architecture:
             technology: "32nm"
             global_cycle_seconds: 1e-9
             has_power_gating: false
-            power_gated_at: null
         local:
           - name: DRAM[1..1]
             class: DRAM
@@ -27,12 +26,12 @@ architecture:
                 meshY: 1
                 technology: "32nm"
                 global_cycle_seconds: 1e-9
-                power_gated_at: null
+                power_gated_at: "DRAM"
             required_actions:
+              - leak
               - update
               - read
               - write
-              - leak
             enabled: true
           - name: shared_glb[1..1]
             class: smartbuffer_SRAM
@@ -53,12 +52,12 @@ architecture:
                 meshY: 1
                 technology: "32nm"
                 global_cycle_seconds: 1e-9
-                power_gated_at: null
+                power_gated_at: "shared_glb"
             required_actions:
+              - leak
               - update
               - read
               - write
-              - leak
             enabled: true
           - name: inter_PE_column_spatial[1..1]
             class: dummy_storage
@@ -77,7 +76,7 @@ architecture:
                 meshX: 1
                 meshY: 1
                 global_cycle_seconds: 1e-9
-                power_gated_at: null
+                power_gated_at: "inter_PE_column_spatial"
             enabled: true
           - name: inter_PE_spatial[1..14]
             class: dummy_storage
@@ -96,7 +95,7 @@ architecture:
                 meshX: 14
                 meshY: 1
                 global_cycle_seconds: 1e-9
-                power_gated_at: null
+                power_gated_at: "inter_PE_spatial"
             enabled: true
           - name: ifmap_spad[1..168]
             class: smartbuffer_RF
@@ -117,12 +116,12 @@ architecture:
                 meshY: 12
                 technology: "32nm"
                 global_cycle_seconds: 1e-9
-                power_gated_at: null
+                power_gated_at: "ifmap_spad"
             required_actions:
+              - leak
               - update
               - read
               - write
-              - leak
             enabled: true
           - name: weights_spad[1..168]
             class: smartbuffer_RF
@@ -143,12 +142,12 @@ architecture:
                 meshY: 12
                 technology: "32nm"
                 global_cycle_seconds: 1e-9
-                power_gated_at: null
+                power_gated_at: "weights_spad"
             required_actions:
+              - leak
               - update
               - read
               - write
-              - leak
             enabled: true
           - name: psum_spad[1..168]
             class: smartbuffer_RF
@@ -170,12 +169,12 @@ architecture:
                 meshY: 12
                 technology: "32nm"
                 global_cycle_seconds: 1e-9
-                power_gated_at: null
+                power_gated_at: "psum_spad"
             required_actions:
+              - leak
               - update
               - read
               - write
-              - leak
             enabled: true
           - name: mac[1..168]
             class: intmac
@@ -187,7 +186,7 @@ architecture:
                 meshY: 12
                 technology: "32nm"
                 global_cycle_seconds: 1e-9
-                power_gated_at: null
+                power_gated_at: "mac"
             required_actions:
               - compute
             enabled: true
@@ -201,7 +200,7 @@ architecture_constraints:
           - Outputs
         bypass:
           - Weights
-        type: bypass
+        type: dataspace
         target: shared_glb
       - type: temporal
         permutation: N
@@ -219,7 +218,7 @@ architecture_constraints:
           - Weights
           - Inputs
           - Outputs
-        type: bypass
+        type: dataspace
         target: inter_PE_column_spatial
       - type: spatial
         factors: N=1,P=1,Q=1,R=1
@@ -234,11 +233,11 @@ architecture_constraints:
           - Weights
           - Inputs
           - Outputs
-        type: bypass
+        type: dataspace
         target: inter_PE_spatial
       - keep:
           - Inputs
-        type: bypass
+        type: dataspace
         bypass:
           - Outputs
           - Weights
@@ -249,7 +248,7 @@ architecture_constraints:
         target: ifmap_spad
       - keep:
           - Weights
-        type: bypass
+        type: dataspace
         bypass:
           - Outputs
           - Inputs
@@ -260,10 +259,10 @@ architecture_constraints:
         target: weights_spad
       - keep:
           - Outputs
-        type: bypass
+        type: dataspace
         bypass:
-          - Weights
           - Inputs
+          - Weights
         target: psum_spad
       - permutation: NCPQRSM
         factors: N=1,C=1,R=1,S=1,P=1,Q=1
@@ -385,7 +384,7 @@ compound_components:
         subcomponents:
           - name: storage
             class: regfile
-            area_scale: area_scale
+            area_share: area_scale
             attributes:
                 width: memory_width
                 depth: memory_depth
@@ -404,7 +403,7 @@ compound_components:
               - name: storage
                 actions:
                   - name: write
-                    energy_scale: dynamic_energy_scale
+                    action_share: dynamic_energy_scale
               - name: address_generators[0]
                 actions:
                   - name: add
@@ -413,7 +412,7 @@ compound_components:
               - name: storage
                 actions:
                   - name: read
-                    energy_scale: dynamic_energy_scale
+                    action_share: dynamic_energy_scale
               - name: address_generators[1]
                 actions:
                   - name: add
@@ -422,7 +421,7 @@ compound_components:
               - name: storage
                 actions:
                   - name: leak
-                    energy_scale: static_energy_scale
+                    action_share: static_energy_scale
               - name: address_generators[0..1]
                 actions:
                   - name: leak
@@ -431,7 +430,7 @@ compound_components:
               - name: storage
                 actions:
                   - name: write
-                    energy_scale: dynamic_energy_scale
+                    action_share: dynamic_energy_scale
               - name: address_generators[0]
                 actions:
                   - name: add
@@ -505,7 +504,7 @@ compound_components:
         subcomponents:
           - name: storage
             class: SRAM
-            area_scale: area_scale
+            area_share: area_scale
             attributes:
                 width: memory_width
                 depth: memory_depth
@@ -524,7 +523,7 @@ compound_components:
               - name: storage
                 actions:
                   - name: write
-                    energy_scale: dynamic_energy_scale
+                    action_share: dynamic_energy_scale
               - name: address_generators[0]
                 actions:
                   - name: add
@@ -533,7 +532,7 @@ compound_components:
               - name: storage
                 actions:
                   - name: read
-                    energy_scale: dynamic_energy_scale
+                    action_share: dynamic_energy_scale
               - name: address_generators[1]
                 actions:
                   - name: add
@@ -542,7 +541,7 @@ compound_components:
               - name: storage
                 actions:
                   - name: leak
-                    energy_scale: static_energy_scale
+                    action_share: static_energy_scale
               - name: address_generators[0..1]
                 actions:
                   - name: leak
@@ -551,7 +550,7 @@ compound_components:
               - name: storage
                 actions:
                   - name: write
-                    energy_scale: dynamic_energy_scale
+                    action_share: dynamic_energy_scale
               - name: address_generators[0]
                 actions:
                   - name: add
@@ -583,9 +582,8 @@ mapper:
     filter_revisits: false
 mapspace:
     version: '0.4'
-    template: uber
+    template: ruby
 globals:
     version: '0.4'
     environment_variables: {}
     expression_custom_functions: []
-    accelergy_plug_ins: []

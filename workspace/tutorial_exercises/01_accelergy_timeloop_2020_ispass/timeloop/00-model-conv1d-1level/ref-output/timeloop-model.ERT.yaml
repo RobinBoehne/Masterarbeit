@@ -3,6 +3,11 @@ ERT:
     tables:
       - name: PE_top_level.Buffer[1..1]
         actions:
+          - name: leak
+            arguments:
+                global_cycle_seconds: 1e-09
+                action_latency_cycles: 1
+            energy: 0.000861
           - name: update
             arguments:
                 global_cycle_seconds: 1e-09
@@ -18,11 +23,6 @@ ERT:
                 global_cycle_seconds: 1e-09
                 action_latency_cycles: 1
             energy: 0.42564
-          - name: leak
-            arguments:
-                global_cycle_seconds: 1e-09
-                action_latency_cycles: 1
-            energy: 0.000861
       - name: PE_top_level.MACC[1..1]
         actions:
           - name: compute

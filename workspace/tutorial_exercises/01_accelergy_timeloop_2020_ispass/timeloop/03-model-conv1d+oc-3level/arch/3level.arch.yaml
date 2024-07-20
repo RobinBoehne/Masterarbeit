@@ -37,4 +37,4 @@ architecture:
     name: MACC
     class: intmac
     attributes:
-      width: 8
+      datawidth: 8
