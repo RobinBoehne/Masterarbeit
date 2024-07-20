@@ -41,7 +41,7 @@ notebooks/*.mp4
 #
 # docker
 #
-docker-compose.yaml
+#docker-compose.yaml
 
 .past_versions
 workspace/.bash_history
