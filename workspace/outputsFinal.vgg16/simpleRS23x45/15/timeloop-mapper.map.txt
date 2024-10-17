@@ -1,0 +1,23 @@
+DRAM [ Weights:4096000 (4096000) Inputs:4096 (4096) Outputs:1000 (1000) ] 
+-------------------------------------------------------------------------
+| for C in [0:4)
+
+shared_glb [ Outputs:1000 (1000) ] 
+----------------------------------
+|   for C in [0:23)
+|     for M in [0:25)
+
+inter_PE_column_spatial [ ] 
+inter_PE_spatial [ ] 
+--------------------
+|       for C in [0:45,1) (Spatial-Y)
+
+pe_spad [ Weights:40 (40) Inputs:1 (1) ] 
+----------------------------------------
+|         for M in [0:40)
+
+weight_reg [ Weights:1 (1) ] 
+input_activation_reg [ Inputs:1 (1) ] 
+output_activation_reg [ Outputs:1 (1) ] 
+---------------------------------------
+|           << Compute >>

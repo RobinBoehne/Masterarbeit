@@ -1,0 +1,102 @@
+mapping:
+  - target: output_activation_reg
+    type: datatype
+    keep:
+      - Outputs
+    bypass:
+      - Weights
+      - Inputs
+  - target: input_activation_reg
+    type: datatype
+    keep:
+      - Inputs
+    bypass:
+      - Weights
+      - Outputs
+  - target: weight_reg
+    type: datatype
+    keep:
+      - Weights
+    bypass:
+      - Inputs
+      - Outputs
+  - target: pe_spad
+    type: datatype
+    keep:
+      - Inputs
+      - Outputs
+    bypass:
+      - Weights
+  - target: inter_PE_spatial
+    type: datatype
+    keep:
+      []
+    bypass:
+      - Weights
+      - Inputs
+      - Outputs
+  - target: inter_PE_column_spatial
+    type: datatype
+    keep:
+      []
+    bypass:
+      - Weights
+      - Inputs
+      - Outputs
+  - target: shared_glb
+    type: datatype
+    keep:
+      - Inputs
+    bypass:
+      - Weights
+      - Outputs
+  - target: DRAM
+    type: datatype
+    keep:
+      - Weights
+      - Inputs
+      - Outputs
+    bypass:
+      []
+  - target: output_activation_reg
+    type: temporal
+    factors: C1 M1 R1 S1 N1 P1 Q1 G1
+    permutation: CMRSNPQG
+  - target: input_activation_reg
+    type: temporal
+    factors: C1 M1 R1 S1 N1 P1 Q1 G1
+    permutation: CMRSNPQG
+  - target: weight_reg
+    type: temporal
+    factors: C1 M1 R1 S1 N1 P1 Q1 G1
+    permutation: CMRSNPQG
+  - target: pe_spad
+    type: temporal
+    factors: C8 M32 R1 S1 N1 P1 Q1 G1
+    permutation: CMRSNPQG
+  - target: inter_PE_spatial
+    type: spatial
+    factors: C1 M1 R1 S1 N1 P44 Q1 G1
+    permutation: PCMRSNQG
+    split: 0
+  - target: inter_PE_spatial
+    type: temporal
+    factors: C1 M1 R1 S1 N1 P1 Q1 G1
+    permutation: CMRSNPQG
+  - target: inter_PE_column_spatial
+    type: spatial
+    factors: C1 M1 R1 S1 N1 P1 Q23 G1
+    permutation: QCMRSNPG
+    split: 1
+  - target: inter_PE_column_spatial
+    type: temporal
+    factors: C1 M1 R1 S1 N1 P1 Q1 G1
+    permutation: CMRSNPQG
+  - target: shared_glb
+    type: temporal
+    factors: C1 M1 R3 S3 N1 P1 Q1 G1
+    permutation: RSCMNPQG
+  - target: DRAM
+    type: temporal
+    factors: C8 M2 R1 S1 N1 P13 Q25 G1
+    permutation: CMQPRSNG

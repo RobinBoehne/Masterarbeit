@@ -1,0 +1,35 @@
+DRAM [ Weights:294912 (294912) Inputs:10240000 (10240000) Outputs:5018112 (5018112) ] 
+-------------------------------------------------------------------------------------
+| for Q in [0:3)
+|   for P in [0:7)
+|     for M in [0:2)
+|       for C in [0:26)
+
+shared_glb [ Weights:5760 (5760) Outputs:122496 (122496) ] 
+----------------------------------------------------------
+|         for Q in [0:2)
+|           for M in [0:32)
+
+inter_PE_column_spatial [ ] 
+---------------------------
+|             for P in [0:29,24) (Spatial-X)
+
+inter_PE_spatial [ ] 
+--------------------
+|               for C in [0:10,6) (Spatial-Y)
+|                 for R in [0:3) (Spatial-Y)
+
+pe_spad [ Inputs:35 (35) Outputs:66 (66) ] 
+------------------------------------------
+|                   for M in [0:2)
+|                     for S in [0:3)
+|                       for Q in [0:11)
+
+weight_reg [ Weights:1 (1) ] 
+----------------------------
+|                         for Q in [0:3)
+
+input_activation_reg [ Inputs:1 (1) ] 
+output_activation_reg [ Outputs:1 (1) ] 
+---------------------------------------
+|                           << Compute >>

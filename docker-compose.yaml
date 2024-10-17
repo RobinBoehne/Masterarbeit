@@ -40,6 +40,6 @@ services:
     volumes:
       - ./workspace:/home/workspace
     environment:
-      - USER_UID=1000
-      - USER_GID=1000
-      # - JUPYTER_SWITCHES=--NotebookApp.token=''
+      - USER_UID=18022
+      - USER_GID=18022
+      - JUPYTER_SWITCHES=--NotebookApp.token=''

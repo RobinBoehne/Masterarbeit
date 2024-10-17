@@ -1,0 +1,103 @@
+ERT_summary:
+    version: '0.4'
+    table_summary:
+      - name: system_top_level.DRAM[1..1]
+        actions:
+          - name: write
+            energy: 512.0
+          - name: leak
+            energy: 0.0
+          - name: read
+            energy: 512.0
+          - name: update
+            energy: 512.0
+        primitive_estimation(s):
+          - name: system_top_level.DRAM[1..1]
+            estimator: CactiDRAM
+      - name: system_top_level.shared_glb[1..1]
+        actions:
+          - name: write
+            energy: 14.137929
+          - name: read
+            energy: 18.183829
+          - name: leak
+            energy: 0.005652
+          - name: update
+            energy: 14.137929
+        primitive_estimation(s):
+          - name: storage
+            estimator: CactiSRAM
+          - name: address_generators[0]
+            estimator: Neurosim Plug-In
+          - name: address_generators[1]
+            estimator: Neurosim Plug-In
+          - name: address_generators[0..1]
+            estimator: Neurosim Plug-In
+      - name: system_top_level.ifmap_spad[1..1020]
+        actions:
+          - name: write
+            energy: 0.087954
+          - name: read
+            energy: 0.055683
+          - name: leak
+            energy: 4e-06
+          - name: update
+            energy: 0.087954
+        primitive_estimation(s):
+          - name: storage
+            estimator: CactiSRAM
+          - name: address_generators[0]
+            estimator: Neurosim Plug-In
+          - name: address_generators[1]
+            estimator: Neurosim Plug-In
+          - name: address_generators[0..1]
+            estimator: Neurosim Plug-In
+      - name: system_top_level.weights_spad[1..1020]
+        actions:
+          - name: write
+            energy: 0.47002
+          - name: read
+            energy: 0.32473
+          - name: leak
+            energy: 2.8e-05
+          - name: update
+            energy: 0.47002
+        primitive_estimation(s):
+          - name: storage
+            estimator: CactiSRAM
+          - name: address_generators[0]
+            estimator: Neurosim Plug-In
+          - name: address_generators[1]
+            estimator: Neurosim Plug-In
+          - name: address_generators[0..1]
+            estimator: Neurosim Plug-In
+      - name: system_top_level.psum_spad[1..1020]
+        actions:
+          - name: write
+            energy: 0.108012
+          - name: read
+            energy: 0.067623
+          - name: leak
+            energy: 5e-06
+          - name: update
+            energy: 0.108012
+        primitive_estimation(s):
+          - name: storage
+            estimator: CactiSRAM
+          - name: address_generators[0]
+            estimator: Neurosim Plug-In
+          - name: address_generators[1]
+            estimator: Neurosim Plug-In
+          - name: address_generators[0..1]
+            estimator: Neurosim Plug-In
+      - name: system_top_level.mac[1..1020]
+        actions:
+          - name: compute
+            energy: 0.207692
+          - name: leak
+            energy: 0.002374
+        primitive_estimation(s):
+          - name: intadder
+            estimator: Library
+          - name: intmultiplier
+            estimator: Library
